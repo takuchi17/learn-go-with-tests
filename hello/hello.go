@@ -4,16 +4,19 @@ import (
 	"fmt"
 )
 
+const spanish = "Spanish"
 const englishHelloPrefix = "Hello, "
+const spanishHelloPrefix = "Hola, "
+const ending = "!"
 
 func Hello(name string, language string) string {
 	if name == "" {
 		name = "World"
 	}
-	if language == "Spanish" {
-		return "Hola, " + name + "!"
+	if language == spanish {
+		return spanishHelloPrefix + name + ending
 	}
-	return englishHelloPrefix + name + "!"
+	return englishHelloPrefix + name + ending
 }
 
 func main() {
