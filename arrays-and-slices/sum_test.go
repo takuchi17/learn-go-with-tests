@@ -17,21 +17,21 @@ func TestSum(t *testing.T) {
 }
 
 func TestSumAllTails(t *testing.T) {
-	t.Run("make the sums of slices", func(t *testing.T) {
-		got := SumAllTails([]int{1, 2, 3, 5}, []int{2, 3})
-		want := []int{10, 3}
-
+	checkSums := func(t testing.TB, got, want []int) {
+		t.Helper()
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got %d want %d", got, want)
 		}
+	}
+	t.Run("make the sums of slices", func(t *testing.T) {
+		got := SumAllTails([]int{1, 2, 3, 5}, []int{2, 3})
+		want := []int{10, 3}
+		checkSums(t, got, want)
 	})
 
 	t.Run("safety sum empty slices", func(t *testing.T) {
 		got := SumAllTails([]int{}, []int{2, 3})
 		want := []int{0, 3}
-
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got %d want %d", got, want)
-		}
+		checkSums(t, got, want)
 	})
 }
