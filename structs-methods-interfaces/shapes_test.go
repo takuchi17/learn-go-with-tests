@@ -3,23 +3,20 @@ package main
 import "testing"
 
 func TestPerimeter(t *testing.T) {
-	checkPerimeter := func(t testing.TB, shape Shape, want float64) {
-		t.Helper()
-		got := shape.Perimeter()
-		if got != want {
-			t.Errorf("got %g want %g", got, want)
+	perimeterTests := []struct {
+		shape Shape
+		want  float64
+	}{
+		{Rectangle{12, 6}, 36},
+		{Circle{10}, 62.83185307179586},
+	}
+
+	for _, tt := range perimeterTests {
+		got := tt.shape.Perimeter()
+		if got != tt.want {
+			t.Errorf("got %g want %g", got, tt.want)
 		}
 	}
-	t.Run("rectangles", func(t *testing.T) {
-		rectangle := Rectangle{10.0, 10.0}
-		want := 40.0
-		checkPerimeter(t, rectangle, want)
-	})
-	t.Run("Cicle", func(t *testing.T) {
-		circle := Circle{10.0}
-		want := 62.83185307179586
-		checkPerimeter(t, circle, want)
-	})
 }
 
 func TestArea(t *testing.T) {
