@@ -7,7 +7,10 @@ import (
 )
 
 func Countdown(buffer io.Writer) {
-	fmt.Fprint(buffer, "3")
+	for i := 3; i > 0; i-- {
+		fmt.Fprint(buffer, i)
+	}
+	fmt.Fprintln(buffer, "Go!") // ln adds a newline
 }
 
 func main() {
